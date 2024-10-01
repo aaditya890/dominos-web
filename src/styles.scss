@@ -1,1 +1,58 @@
-/* You can add global styles to this file, and also import other style files */
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+
+// Include the common styles for Angular Material.
+@include mat.core();
+
+// Define the palettes for your theme
+$Dominos-primary: mat.define-palette(mat.$blue-palette,800); // Navbar and primary elements
+$Dominos-accent: mat.define-palette(mat.$blue-palette, 700); // Secondary elements (gray)
+$Dominos-warn: mat.define-palette(mat.$red-palette); // Warn palette
+$Dominos-button: mat.define-palette(mat.$green-palette, A200, A100, A400); // Green buttons
+
+// Create the main theme object
+$Dominos-theme: mat.define-light-theme((
+  color: (
+    primary: $Dominos-primary,
+    accent: $Dominos-accent,
+    warn: $Dominos-warn,
+  ),
+  typography: mat.define-typography-config(),
+  density: 0
+));
+
+// Include theme styles for all components
+@include mat.all-component-themes($Dominos-theme);
+
+// Custom theme overrides
+// Apply green theme to buttons only
+// .mat-raised-button, .mat-flat-button, .mat-stroked-button {
+//   @include mat.button-theme((
+//     color: (
+//       primary: $Dominos-button
+//     )
+//   ));
+// }
+
+// // Navbar specific theming (apply blue theme to navbar)
+// .mat-toolbar {
+//   background-color: mat.get-color-from-palette($Dominos-primary);
+//   color: mat.get-color-from-palette($Dominos-primary, "contrast");
+// }
+
+// Global styles
+html, body { 
+  height: 100%; 
+}
+body { 
+  margin: 0; 
+  font-family: Roboto, "Helvetica Neue", sans-serif; 
+  // background: map-get($map: $Dominos-primary, $key:700 );
+}
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind variants;
